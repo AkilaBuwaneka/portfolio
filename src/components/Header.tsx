@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Moon, Sun } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Moon, Sun, Code2 } from 'lucide-react';
 import { useTheme } from '../hooks/useCustomHooks';
+import { personalInfo } from '../data/mockData';
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -17,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Certifications', href: '#certifications' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -40,15 +42,23 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <motion.div
-              className="flex-shrink-0"
+            <motion.a
+              href="#home"
+              className="flex-shrink-0 relative group focus:outline-none focus-visible:outline-none"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onMouseDown={(e) => e.preventDefault()}
             >
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Alex.dev
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent relative z-10">
+                AB.dev
               </h1>
-            </motion.div>
+              <motion.div
+                className="absolute inset-0 bg-purple-500/10 rounded-lg blur-lg -z-10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileHover={{ opacity: 1, scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
@@ -57,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
                   <motion.a
                     key={item.label}
                     href={item.href}
-                    className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium"
+                    className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:text-purple-600 dark:focus:text-purple-400 transition-colors duration-200 font-medium rounded-lg px-3 py-2"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
@@ -74,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
               {/* Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -84,26 +94,44 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
               {/* Social Links */}
               <div className="hidden sm:flex items-center space-x-2">
                 <motion.a
-                  href="https://github.com"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  href={personalInfo.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label="GitHub Profile"
                 >
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label="LinkedIn Profile"
                 >
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
-                  href="mailto:alex@portfolio.dev"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  href={personalInfo.social.leetcode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label="LeetCode Profile"
+                >
+                  <Code2 size={20} />
+                </motion.a>
+                <motion.a
+                  href={`mailto:${personalInfo.email}`}
+                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Email"
                 >
                   <Mail size={20} />
                 </motion.a>
@@ -111,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
 
               {/* Mobile Menu Button */}
               <motion.button
-                className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -137,7 +165,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
               <motion.a
                 key={item.label}
                 href={item.href}
-                className="block py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                className="block py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:text-purple-600 dark:focus:text-purple-400 transition-colors font-medium rounded-lg px-3"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -147,13 +175,16 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
               </motion.a>
             ))}
             <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <a href="https://github.com" className="text-gray-600 dark:text-gray-300">
+              <a href={personalInfo.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="https://linkedin.com" className="text-gray-600 dark:text-gray-300">
+              <a href={personalInfo.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:alex@portfolio.dev" className="text-gray-600 dark:text-gray-300">
+              <a href={personalInfo.social.leetcode} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="LeetCode">
+                <Code2 size={20} />
+              </a>
+              <a href={`mailto:${personalInfo.email}`} className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>

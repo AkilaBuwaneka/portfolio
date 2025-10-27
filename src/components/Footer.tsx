@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Heart, Code2 } from 'lucide-react';
+import { personalInfo } from '../data/mockData';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -20,10 +21,10 @@ const Footer: React.FC = () => {
     {
       title: 'Connect',
       links: [
-        { label: 'GitHub', href: 'https://github.com' },
-        { label: 'LinkedIn', href: 'https://linkedin.com' },
-        { label: 'Twitter', href: 'https://twitter.com' },
-        { label: 'Email', href: 'mailto:alex@portfolio.dev' }
+        { label: 'GitHub', href: personalInfo.social.github },
+        { label: 'LinkedIn', href: personalInfo.social.linkedin },
+        { label: 'LeetCode', href: personalInfo.social.leetcode },
+        { label: 'Email', href: `mailto:${personalInfo.email}` }
       ]
     }
   ];
@@ -47,7 +48,7 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Alex.dev
+                AB.dev
               </h3>
               <p className="text-gray-300 leading-relaxed">
                 Crafting digital experiences that blend innovation with purpose. 
@@ -55,7 +56,10 @@ const Footer: React.FC = () => {
               </p>
               <div className="flex space-x-4">
                 <motion.a
-                  href="https://github.com"
+                  href={personalInfo.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
                   className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
@@ -63,7 +67,10 @@ const Footer: React.FC = () => {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com"
+                  href={personalInfo.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                   className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
@@ -71,7 +78,19 @@ const Footer: React.FC = () => {
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
-                  href="mailto:alex@portfolio.dev"
+                  href={personalInfo.social.leetcode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LeetCode"
+                  className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Code2 size={20} />
+                </motion.a>
+                <motion.a
+                  href={`mailto:${personalInfo.email}`}
+                  aria-label="Email"
                   className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
@@ -117,10 +136,10 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
           >
             <p className="text-gray-400 text-center md:text-left mb-4 md:mb-0 flex items-center">
-              Made with <Heart className="mx-2 text-red-400" size={16} /> by Alex Developer
+              Made with <Heart className="mx-2 text-red-400" size={16} /> by {personalInfo.name}
             </p>
             <p className="text-gray-400 text-sm">
-              © 2024 Alex Developer. All rights reserved.
+              © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
             </p>
           </motion.div>
         </div>

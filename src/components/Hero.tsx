@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Download, Code2 } from 'lucide-react';
 import { useMousePosition } from '../hooks/useCustomHooks';
 import { personalInfo } from '../data/mockData';
+import { handleResume } from '../utils/resumeUtils';
 
 const Hero: React.FC = () => {
   const mousePosition = useMousePosition();
@@ -147,7 +148,7 @@ const Hero: React.FC = () => {
           >
             <motion.a
               href="#projects"
-              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all"
               whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(168, 85, 247, 0.3)' }}
               whileTap={{ scale: 0.95 }}
             >
@@ -157,9 +158,9 @@ const Hero: React.FC = () => {
               </span>
             </motion.a>
 
-            <motion.a
-              href={personalInfo.resumeUrl}
-              className="group px-8 py-4 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-full font-semibold text-lg hover:bg-purple-600 hover:text-white transition-colors"
+            <motion.button
+              onClick={() => handleResume(personalInfo.resumeUrl)}
+              className="group px-8 py-4 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-full font-semibold text-lg hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-500/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -167,7 +168,7 @@ const Hero: React.FC = () => {
                 <Download size={20} />
                 <span>Download CV</span>
               </span>
-            </motion.a>
+            </motion.button>
           </motion.div>
 
           {/* Social Links */}
@@ -178,14 +179,18 @@ const Hero: React.FC = () => {
             className="flex justify-center space-x-6 pt-8"
           >
             {[
-              { icon: Github, href: personalInfo.social.github, color: 'hover:text-gray-800 dark:hover:text-gray-200' },
-              { icon: Linkedin, href: personalInfo.social.linkedin, color: 'hover:text-blue-600' },
-              { icon: Mail, href: `mailto:${personalInfo.email}`, color: 'hover:text-red-500' }
-            ].map(({ icon: Icon, href, color }, index) => (
+              { icon: Github, href: personalInfo.social.github, color: 'hover:text-gray-800 dark:hover:text-gray-200', label: 'GitHub' },
+              { icon: Linkedin, href: personalInfo.social.linkedin, color: 'hover:text-blue-600', label: 'LinkedIn' },
+              { icon: Code2, href: personalInfo.social.leetcode, color: 'hover:text-orange-500', label: 'LeetCode' },
+              { icon: Mail, href: `mailto:${personalInfo.email}`, color: 'hover:text-red-500', label: 'Email' }
+            ].map(({ icon: Icon, href, color, label }, index) => (
               <motion.a
                 key={index}
                 href={href}
-                className={`p-3 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-400 ${color} transition-colors shadow-lg`}
+                target={label !== 'Email' ? '_blank' : undefined}
+                rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
+                aria-label={label}
+                className={`p-3 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-400 ${color} hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0, scale: 0 }}

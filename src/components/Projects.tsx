@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight, Filter } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, ArrowRight, Filter, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useCustomHooks';
 import { projects, type Project } from '../data/mockData';
+import { getProjectImages } from '../data/projectImages';
 
 const Projects: React.FC = () => {
   const [ref, isInView] = useIntersectionObserver(0.1);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const categories = ['all', 'web', 'mobile', 'ai', 'design'];
   const filteredProjects = selectedCategory === 'all' 
@@ -210,53 +212,255 @@ const Projects: React.FC = () => {
       </div>
 
       {/* Project Modal */}
-      {selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedProject(null)}
-        >
+      <AnimatePresence>
+        {selectedProject && (
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+            onClick={() => {
+              setSelectedProject(null);
+              setCurrentImageIndex(0);
+            }}
           >
-            {/* Modal content would go here - detailed project view */}
-            <div className="p-8">
-              <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">{selectedProject.longDescription}</p>
-              
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-2">Challenge</h4>
-                  <p className="text-gray-600 dark:text-gray-400">{selectedProject.challenge}</p>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white dark:bg-gray-800 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setSelectedProject(null);
+                  setCurrentImageIndex(0);
+                }}
+                className="absolute top-4 right-4 z-10 p-2 bg-white/90 dark:bg-gray-800/90 rounded-full hover:bg-white dark:hover:bg-gray-700 transition-colors shadow-lg"
+              >
+                <X size={24} className="text-gray-800 dark:text-gray-200" />
+              </button>
+
+              {/* Image Gallery Section */}
+              <div className="relative">
+                {(() => {
+                  const projectImages = getProjectImages(selectedProject.id);
+                  
+                  return projectImages.length > 0 ? (
+                    <div className="relative h-96 bg-gray-900">
+                      {/* Main Image */}
+                      <motion.img
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        src={projectImages[currentImageIndex].url}
+                        alt={projectImages[currentImageIndex].title}
+                        className="w-full h-full object-contain"
+                      />
+                      
+                      {/* Navigation Arrows */}
+                      {projectImages.length > 1 && (
+                        <>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIndex((prev) => 
+                                prev === 0 ? projectImages.length - 1 : prev - 1
+                              );
+                            }}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 dark:bg-gray-800/90 rounded-full hover:bg-white dark:hover:bg-gray-700 transition-all shadow-lg"
+                          >
+                            <ChevronLeft size={24} />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIndex((prev) => 
+                                prev === projectImages.length - 1 ? 0 : prev + 1
+                              );
+                            }}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/90 dark:bg-gray-800/90 rounded-full hover:bg-white dark:hover:bg-gray-700 transition-all shadow-lg"
+                          >
+                            <ChevronRight size={24} />
+                          </button>
+                        </>
+                      )}
+
+                      {/* Image Counter */}
+                      {projectImages.length > 1 && (
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full text-white text-sm">
+                          {currentImageIndex + 1} / {projectImages.length}
+                        </div>
+                      )}
+
+                      {/* Image Title Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                        <h4 className="text-white font-semibold text-lg">
+                          {projectImages[currentImageIndex].title}
+                        </h4>
+                        {projectImages[currentImageIndex].description && (
+                          <p className="text-gray-300 text-sm mt-1">
+                            {projectImages[currentImageIndex].description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="h-64 bg-gradient-to-br from-purple-600 to-pink-600" />
+                  );
+                })()}
+
+                {/* Thumbnail Gallery */}
+                {(() => {
+                  const projectImages = getProjectImages(selectedProject.id);
+                  return projectImages.length > 1 && (
+                    <div className="flex gap-2 p-4 overflow-x-auto bg-gray-100 dark:bg-gray-900">
+                      {projectImages.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex(index);
+                          }}
+                          className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border-2 transition-all ${
+                            currentImageIndex === index
+                              ? 'border-purple-600 scale-105'
+                              : 'border-transparent opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          <img
+                            src={image.url}
+                            alt={image.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Project Details */}
+              <div className="p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                      {selectedProject.title}
+                    </h3>
+                    <div className="flex items-center space-x-4">
+                      <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium capitalize">
+                        {selectedProject.category}
+                      </span>
+                      <span className="text-gray-500 dark:text-gray-400 text-sm">
+                        {selectedProject.year}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex space-x-2">
+                    {selectedProject.liveUrl && (
+                      <motion.a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-purple-600 rounded-full text-white hover:bg-purple-700 transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <ExternalLink size={20} />
+                      </motion.a>
+                    )}
+                    {selectedProject.githubUrl && (
+                      <motion.a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-gray-800 dark:bg-gray-700 rounded-full text-white hover:bg-gray-900 dark:hover:bg-gray-600 transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Github size={20} />
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+
+                <p className="text-gray-700 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+                  {selectedProject.longDescription}
+                </p>
+
+                {/* Technologies */}
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">
+                    Technologies Used
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech) => (
+                      <motion.span
+                        key={tech}
+                        className="px-4 py-2 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium border border-purple-200 dark:border-purple-800"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
                 
-                <div>
-                  <h4 className="font-semibold mb-2">Solution</h4>
-                  <p className="text-gray-600 dark:text-gray-400">{selectedProject.solution}</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">Result</h4>
-                  <p className="text-gray-600 dark:text-gray-400">{selectedProject.result}</p>
+                <div className="space-y-6">
+                  {/* Challenge */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="p-4 bg-red-50 dark:bg-red-900/10 rounded-xl border-l-4 border-red-500"
+                  >
+                    <h4 className="font-semibold text-red-700 dark:text-red-400 mb-2 flex items-center">
+                      <span className="mr-2">🎯</span> Challenge
+                    </h4>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {selectedProject.challenge}
+                    </p>
+                  </motion.div>
+                  
+                  {/* Solution */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="p-4 bg-blue-50 dark:bg-blue-900/10 rounded-xl border-l-4 border-blue-500"
+                  >
+                    <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2 flex items-center">
+                      <span className="mr-2">💡</span> Solution
+                    </h4>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {selectedProject.solution}
+                    </p>
+                  </motion.div>
+                  
+                  {/* Result */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="p-4 bg-green-50 dark:bg-green-900/10 rounded-xl border-l-4 border-green-500"
+                  >
+                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2 flex items-center">
+                      <span className="mr-2">✨</span> Result
+                    </h4>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {selectedProject.result}
+                    </p>
+                  </motion.div>
                 </div>
               </div>
-              
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              >
-                Close
-              </button>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 };

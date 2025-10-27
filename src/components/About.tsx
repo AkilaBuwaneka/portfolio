@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Rocket, Heart, Award, Users } from 'lucide-react';
+import { Code, Palette, Rocket, Heart } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useCustomHooks';
-import { personalInfo, skills } from '../data/mockData';
+import { personalInfo } from '../data/mockData';
 
 const About: React.FC = () => {
   const [ref, isInView] = useIntersectionObserver(0.1);
@@ -31,21 +31,14 @@ const About: React.FC = () => {
   ];
 
   const stats = [
-    { number: '5+', label: 'Years Experience' },
-    { number: '50+', label: 'Projects Completed' },
-    { number: '20+', label: 'Happy Clients' },
-    { number: '15+', label: 'Technologies' }
-  ];
-
-  const skillCategories = [
-    { name: 'Frontend', skills: skills.filter(skill => skill.category === 'frontend'), color: 'from-blue-500 to-cyan-500' },
-    { name: 'Backend', skills: skills.filter(skill => skill.category === 'backend'), color: 'from-green-500 to-emerald-500' },
-    { name: 'Tools', skills: skills.filter(skill => skill.category === 'tools'), color: 'from-orange-500 to-red-500' },
-    { name: 'Soft Skills', skills: skills.filter(skill => skill.category === 'soft'), color: 'from-purple-500 to-pink-500' }
+    { number: '2+', label: 'Years Experience' },
+    { number: '6+', label: 'Projects Completed' },
+    { number: '3+', label: 'Certifications' },
+    { number: '40+', label: 'Technologies' }
   ];
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-800" ref={ref}>
+    <section id="about" className="py-20 bg-white dark:bg-gray-800 overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -159,95 +152,142 @@ const About: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Skills Section */}
+        {/* Tech Stack - Animated Icons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-16"
+          className="mb-16 overflow-hidden"
         >
           <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            Technical <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Expertise</span>
+            Technologies <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">I Work With</span>
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1 + categoryIndex * 0.1 }}
-                className="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl"
-              >
-                <h4 className={`text-lg font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                  {category.name}
-                </h4>
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 1.2 + categoryIndex * 0.1 + skillIndex * 0.05 }}
-                      className="group"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
-                          <span>{skill.icon}</span>
-                          <span className="font-medium">{skill.name}</span>
-                        </span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <motion.div
-                          className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : {}}
-                          transition={{ duration: 1, delay: 1.4 + categoryIndex * 0.1 + skillIndex * 0.05, ease: 'easeOut' }}
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+          {/* Infinite Horizontal Scroll - First Row */}
+          <div className="relative mb-8">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white dark:from-gray-800 to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-gray-800 to-transparent z-10" />
+            
+            <motion.div
+              className="flex space-x-8"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of icons */}
+              {[
+                'React.svg', 'TypeScript.svg', 'JavaScript.svg', 'Next.js.svg', 'Node.js.svg',
+                'Spring.svg', 'Java.svg', 'Python.svg', 'Go.svg', 'FastAPI.svg',
+                'PostgresSQL.svg', 'MongoDB.svg', 'MySQL.svg', 'Redis.svg', 'Docker.svg',
+                'Kubernetes.svg', 'AWS.svg', 'Google Cloud.svg', 'Git.svg', 'GitHub.svg'
+              ].map((icon, index) => (
+                <motion.div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <img
+                    src={new URL(`../assets/icons/${icon}`, import.meta.url).href}
+                    alt={icon.replace('.svg', '')}
+                    className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                  />
+                </motion.div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[
+                'React.svg', 'TypeScript.svg', 'JavaScript.svg', 'Next.js.svg', 'Node.js.svg',
+                'Spring.svg', 'Java.svg', 'Python.svg', 'Go.svg', 'FastAPI.svg',
+                'PostgresSQL.svg', 'MongoDB.svg', 'MySQL.svg', 'Redis.svg', 'Docker.svg',
+                'Kubernetes.svg', 'AWS.svg', 'Google Cloud.svg', 'Git.svg', 'GitHub.svg'
+              ].map((icon, index) => (
+                <motion.div
+                  key={`duplicate-${index}`}
+                  className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <img
+                    src={new URL(`../assets/icons/${icon}`, import.meta.url).href}
+                    alt={icon.replace('.svg', '')}
+                    className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Infinite Horizontal Scroll - Second Row (Reverse Direction) */}
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white dark:from-gray-800 to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-gray-800 to-transparent z-10" />
+            
+            <motion.div
+              className="flex space-x-8"
+              animate={{
+                x: [-1920, 0],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of icons */}
+              {[
+                'Tailwind CSS.svg', 'Bootstrap.svg', 'Material UI.svg', 'HTML5.svg', 'CSS3.svg',
+                'Vite.js.svg', 'NPM.svg', 'Yarn.svg', 'Express.svg',
+                'Flutter.svg', 'Dart.svg', 'PHP.svg', 'Apache Maven.svg',
+                'HashiCorp Terraform.svg', 'Postman.svg', 'Visual Studio Code (VS Code).svg', 'IntelliJ IDEA.svg', 'Figma.svg'
+              ].map((icon, index) => (
+                <motion.div
+                  key={`second-first-${index}`}
+                  className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <img
+                    src={new URL(`../assets/icons/${icon}`, import.meta.url).href}
+                    alt={icon.replace('.svg', '')}
+                    className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                  />
+                </motion.div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[
+                'Tailwind CSS.svg', 'Bootstrap.svg', 'Material UI.svg', 'HTML5.svg', 'CSS3.svg',
+                'Vite.js.svg',  'NPM.svg', 'Yarn.svg', 'Express.svg',
+                'Flutter.svg', 'Dart.svg', 'PHP.svg', 'Apache Maven.svg',
+                'HashiCorp Terraform.svg', 'Postman.svg', 'Visual Studio Code (VS Code).svg', 'IntelliJ IDEA.svg', 'Figma.svg'
+              ].map((icon, index) => (
+                <motion.div
+                  key={`second-duplicate-${index}`}
+                  className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <img
+                    src={new URL(`../assets/icons/${icon}`, import.meta.url).href}
+                    alt={icon.replace('.svg', '')}
+                    className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Achievement Highlights */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-8 rounded-2xl text-white">
-            <div className="flex justify-center items-center space-x-8">
-              <motion.div
-                className="flex items-center space-x-3"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Award size={32} />
-                <div>
-                  <div className="text-2xl font-bold">Award Winner</div>
-                  <div className="text-purple-100">Best Portfolio 2024</div>
-                </div>
-              </motion.div>
-              <motion.div
-                className="flex items-center space-x-3"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Users size={32} />
-                <div>
-                  <div className="text-2xl font-bold">Team Player</div>
-                  <div className="text-purple-100">Collaborative Leader</div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -32,68 +32,107 @@ export interface Skill {
   icon: string;
 }
 
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId?: string;
+  credentialUrl?: string;
+  type: 'certification' | 'badge';
+  imageUrl: string;
+}
+
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'AI-Powered E-commerce Platform',
-    description: 'Next-gen shopping experience with personalized AI recommendations',
-    longDescription: 'Built a revolutionary e-commerce platform that uses machine learning to provide hyper-personalized shopping experiences. Features include real-time recommendation engine, voice search, and AR try-on capabilities.',
-    technologies: ['React', 'TypeScript', 'Node.js', 'TensorFlow', 'WebGL', 'Three.js'],
-    imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop',
-    liveUrl: 'https://ai-commerce-demo.com',
-    githubUrl: 'https://github.com/username/ai-commerce',
+    title: 'Venture Vibe',
+    description: 'Collaborative travel planning platform with social features',
+    longDescription: 'A comprehensive web platform designed for travelers to plan trips collaboratively with friends, discover destinations, manage budgets, and connect with travel guides. Features include trip planning tools, blog sharing, event discovery, and a multi-role system for admins, event planners, and certified travel guides.',
+    technologies: ['React', 'Spring Boot', 'PostgreSQL', 'AWS Cognito', 'AWS S3', 'AWS Lambda', 'GCP', 'GitHub', 'Postman'],
+    imageUrl: new URL('../assets/ventureVibe/homepage_01.PNG', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka',
     featured: true,
     category: 'web',
     year: 2024,
-    challenge: 'Traditional e-commerce platforms lack personalization and have poor conversion rates',
-    solution: 'Implemented AI-driven recommendation engine with 3D product visualization',
-    result: '40% increase in conversion rates and 60% improvement in user engagement'
+    challenge: 'Travelers struggle to plan trips collaboratively and find reliable travel guides while managing budgets effectively',
+    solution: 'Built a comprehensive platform with real-time collaboration, verified travel guide system, budget management tools, and social features for sharing experiences',
+    result: 'Seamless trip planning experience with integrated event discovery, guide booking, and community-driven travel blogs'
   },
   {
     id: '2',
-    title: 'Neural Network Visualizer',
-    description: 'Interactive 3D visualization of deep learning models',
-    longDescription: 'Created an immersive 3D visualization tool that helps researchers and students understand complex neural network architectures through interactive exploration.',
-    technologies: ['WebGL', 'Three.js', 'D3.js', 'Python', 'TensorFlow'],
-    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
-    liveUrl: 'https://neural-viz.com',
-    githubUrl: 'https://github.com/username/neural-viz',
+    title: 'Computify',
+    description: 'PC & laptop accessories e-commerce platform with custom PC builder',
+    longDescription: 'An innovative e-commerce platform specializing in computer accessories and components. Features a unique PC building tool that helps users select compatible components, an intuitive shopping experience, and a comprehensive admin panel for inventory management.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+    imageUrl: new URL('../assets/computify/products_page.jpg', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka',
     featured: true,
-    category: 'ai',
-    year: 2024,
-    challenge: 'Complex neural networks are difficult to understand and debug',
-    solution: 'Built interactive 3D visualization with real-time data flow animation',
-    result: 'Used by 10,000+ researchers worldwide, featured in top AI conferences'
+    category: 'web',
+    year: 2023,
+    challenge: 'Users struggle to build compatible PCs and find the right components for their needs',
+    solution: 'Developed an intelligent PC builder with compatibility checking and comprehensive product catalog with advanced filtering',
+    result: 'Simplified PC building process with real-time compatibility validation and streamlined purchasing experience'
   },
   {
     id: '3',
-    title: 'Sustainable City Dashboard',
-    description: 'Real-time environmental monitoring and urban planning tool',
-    longDescription: 'Developed a comprehensive dashboard for city planners to monitor environmental metrics, energy consumption, and citizen well-being indicators in real-time.',
-    technologies: ['Vue.js', 'Node.js', 'PostgreSQL', 'Docker', 'GraphQL'],
-    imageUrl: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
-    liveUrl: 'https://sustainable-city.com',
-    featured: false,
+    title: 'FreshLand',
+    description: 'Modern food delivery platform with microservices architecture',
+    longDescription: 'A scalable online food ordering platform built with cutting-edge microservices architecture and micro-frontend approach. Utilizes Single SPA for seamless module integration and BFF (Backend for Frontend) pattern for optimized API communication.',
+    technologies: ['React', 'Single SPA', 'Spring Boot', 'Node.js', 'MongoDB', 'Microservices', 'Micro-Frontend'],
+    imageUrl: new URL('../assets/freshland/freshland.PNG', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka',
+    featured: true,
     category: 'web',
-    year: 2023,
-    challenge: 'Cities lack integrated tools for environmental monitoring',
-    solution: 'Created unified dashboard with IoT sensor integration and predictive analytics',
-    result: 'Adopted by 25 smart cities, reduced energy consumption by 15%'
+    year: 2024,
+    challenge: 'Traditional monolithic food delivery platforms struggle with scalability and independent feature deployment',
+    solution: 'Implemented microservices architecture with micro-frontend using Single SPA, enabling independent scaling and deployment of features',
+    result: 'Highly scalable platform with improved performance, faster feature deployment, and better team collaboration'
   },
   {
     id: '4',
-    title: 'AR Fitness Companion',
-    description: 'Augmented reality personal trainer mobile app',
-    longDescription: 'Revolutionary fitness app that uses AR to provide real-time form correction and personalized workout guidance through computer vision.',
-    technologies: ['React Native', 'ARKit', 'ARCore', 'TensorFlow Lite', 'Computer Vision'],
-    imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-    liveUrl: 'https://ar-fitness.app',
+    title: 'Find Optimal Path',
+    description: 'AI-powered indoor navigation and pathfinding solution',
+    longDescription: 'An intelligent pathfinding application that allows users to upload floor plan images, mark obstacles, and generate optimal routes between multiple points. Perfect for warehouse management, indoor navigation, and logistics optimization.',
+    technologies: ['FastAPI', 'Python', 'MongoDB', 'Computer Vision', 'Pathfinding Algorithms'],
+    imageUrl: new URL('../assets/findOptimalPath/homepage.png', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka',
     featured: true,
-    category: 'mobile',
+    category: 'ai',
     year: 2024,
-    challenge: 'Poor form leads to injuries and ineffective workouts',
-    solution: 'AI-powered real-time pose detection with AR overlay feedback',
-    result: '500K+ downloads, 95% user satisfaction, featured by Apple'
+    challenge: 'Manual path planning in complex indoor environments is time-consuming and often inefficient',
+    solution: 'Built an AI-powered system with image processing for floor plan analysis and advanced algorithms for optimal route calculation',
+    result: 'Automated pathfinding with visual floor plan editing, supporting multi-point optimization for efficient navigation'
+  },
+  {
+    id: '5',
+    title: 'ShowSync',
+    description: 'Event management and budget tracking platform',
+    longDescription: 'A modern platform for organizing events and managing budgets efficiently. Currently features a sleek Next.js frontend with plans for a robust backend using Node.js and Express with PostgreSQL for data persistence and real-time updates.',
+    technologies: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Prisma'],
+    imageUrl: new URL('../assets/showSync/homePage.png', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka',
+    featured: false,
+    category: 'web',
+    year: 2024,
+    challenge: 'Event organizers need a centralized platform to manage complex events and track budgets in real-time',
+    solution: 'Creating an intuitive platform with budget tracking, vendor management, and collaborative planning features',
+    result: 'Streamlined event planning workflow with comprehensive budget oversight and team collaboration tools'
+  },
+  {
+    id: '6',
+    title: 'Portfolio Website',
+    description: 'Modern developer portfolio with stunning animations',
+    longDescription: 'A personal portfolio website showcasing projects, skills, and experience with smooth animations and an engaging user interface. Built with modern web technologies for optimal performance and visual appeal.',
+    technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+    imageUrl: new URL('../assets/portfolio/Screenshot 2025-10-27 082151.jpg', import.meta.url).href,
+    githubUrl: 'https://github.com/AkilaBuwaneka/portfolio',
+    featured: false,
+    category: 'web',
+    year: 2025,
+    challenge: 'Need a standout portfolio to showcase technical skills and projects effectively',
+    solution: 'Designed and developed a modern, animated portfolio with smooth interactions and responsive design',
+    result: 'Professional online presence with engaging visuals and comprehensive project showcases'
   }
 ];
 
@@ -113,73 +152,49 @@ export const experiences: Experience[] = [
   }
 ];
 
-export const skills: Skill[] = [
-  // Frontend
-  { name: 'React', category: 'frontend', level: 95, icon: '⚛️' },
-  { name: 'TypeScript', category: 'frontend', level: 90, icon: '📘' },
-  { name: 'Vue.js', category: 'frontend', level: 85, icon: '💚' },
-  { name: 'Three.js', category: 'frontend', level: 80, icon: '🎮' },
-  { name: 'WebGL', category: 'frontend', level: 75, icon: '🎨' },
-  { name: 'Framer Motion', category: 'frontend', level: 88, icon: '🎭' },
-  
-  // Backend
-  { name: 'Node.js', category: 'backend', level: 90, icon: '🟢' },
-  { name: 'Python', category: 'backend', level: 85, icon: '🐍' },
-  { name: 'PostgreSQL', category: 'backend', level: 80, icon: '🐘' },
-  { name: 'GraphQL', category: 'backend', level: 82, icon: '🔗' },
-  { name: 'Docker', category: 'backend', level: 88, icon: '🐳' },
-  
-  // Tools
-  { name: 'Git', category: 'tools', level: 92, icon: '📝' },
-  { name: 'AWS', category: 'tools', level: 85, icon: '☁️' },
-  { name: 'Figma', category: 'tools', level: 78, icon: '🎨' },
-  { name: 'Webpack', category: 'tools', level: 80, icon: '📦' },
-  
-  // Soft Skills
-  { name: 'Leadership', category: 'soft', level: 85, icon: '👑' },
-  { name: 'Problem Solving', category: 'soft', level: 92, icon: '🧩' },
-  { name: 'Communication', category: 'soft', level: 88, icon: '💬' },
-  { name: 'Creativity', category: 'soft', level: 90, icon: '💡' }
-];
-
-export const testimonials = [
+export const certifications: Certification[] = [
   {
     id: '1',
-    name: 'Sarah Johnson',
-    position: 'CTO at TechVision AI',
-    content: 'Exceptional developer with a rare combination of technical expertise and creative vision. Delivered our most complex project ahead of schedule.',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face'
+    title: 'Introduction to Artificial Intelligence 2023',
+    issuer: 'Great Learning',
+    date: '2023',
+    credentialUrl: 'https://verify-link.com',
+    type: 'certification',
+    imageUrl: new URL('../assets/certificationsAndBadges/CertificateOfCompletion_Introduction to Artificial Intelligence 2023_page-0001.jpg', import.meta.url).href
   },
   {
     id: '2',
-    name: 'Mike Chen',
-    position: 'Product Manager at InnovateLab',
-    content: 'Outstanding ability to translate complex requirements into elegant solutions. The 3D visualizations they created exceeded all expectations.',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face'
+    title: 'Level 3 Certificate of Completion - External Project Summit 2024',
+    issuer: 'Project Summit',
+    date: '2024',
+    credentialUrl: 'https://verify-link.com',
+    type: 'certification',
+    imageUrl: new URL('../assets/certificationsAndBadges/Level 3 Certificate of Completion - External Project Summit 2024 - Akila Buwaneka_page-0001.jpg', import.meta.url).href
   },
   {
     id: '3',
-    name: 'Emily Rodriguez',
-    position: 'Design Director at Creative Studio',
-    content: 'Perfect blend of technical skills and design sensibility. Every project was delivered with pixel-perfect precision and smooth animations.',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face'
+    title: 'Digital Badge - ProjectSummit Basecamp03',
+    issuer: 'Project Summit',
+    date: '2024',
+    credentialUrl: 'https://badge-link.com',
+    type: 'badge',
+    imageUrl: new URL('../assets/certificationsAndBadges/Digital Badge - ProjectSummit_Basecamp03.png', import.meta.url).href
   }
 ];
 
 export const personalInfo = {
-  name: 'Alex Developer',
+  name: 'Akila Buwaneka',
   title: 'Creative Full-Stack Developer',
   tagline: 'Crafting digital experiences that blend innovation with purpose',
-  email: 'alex@portfolio.dev',
-  phone: '+1 (555) 123-4567',
-  location: 'San Francisco, CA',
+  email: 'akilamg2000@gmail.com',
+  phone: '+94 704976919',
+  location: 'Galle, Sri Lanka',
   social: {
-    github: 'https://github.com/alexdev',
-    linkedin: 'https://linkedin.com/in/alexdev',
-    twitter: 'https://twitter.com/alexdev',
-    dribbble: 'https://dribbble.com/alexdev'
+    github: 'https://github.com/akilabuwaneka',
+    linkedin: 'https://linkedin.com/in/akila-buwaneka',
+    leetcode: 'https://leetcode.com/u/eImNAuid8I/'
   },
-  bio: 'Passionate full-stack developer with 5+ years of experience creating innovative web applications. I specialize in React, Node.js, and emerging technologies like AI/ML integration and 3D web experiences. Always excited to tackle challenging problems and learn new technologies.',
+  bio: 'Passionate full-stack developer specializing in building scalable web applications with modern technologies. Experienced in architecting microservices platforms, developing AI-powered solutions, and creating collaborative travel and e-commerce systems. Proficient in React, Spring Boot, Node.js, and cloud technologies (AWS, GCP). Strong focus on creating user-centric solutions with clean, maintainable code and innovative problem-solving approaches.',
   availability: 'Available for freelance projects',
   resumeUrl: '/resume.pdf'
 };
