@@ -114,10 +114,10 @@ const Footer: React.FC = () => {
                 <h4 className="text-xl font-semibold text-white">{section.title}</h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
-                    <motion.li key={link.label}>
+                    <motion.li key={link.label} onMouseDown={(e) => e.preventDefault()}>
                       <a
                         href={link.href}
-                        className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group"
+                        className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group outline-none focus:outline-none focus-visible:outline-none"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
                           {link.label}
