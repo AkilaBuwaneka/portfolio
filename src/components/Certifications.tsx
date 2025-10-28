@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, X, ExternalLink, Calendar } from 'lucide-react';
+import { Award, X, Calendar } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useCustomHooks';
 import { certifications } from '../data/mockData';
 
