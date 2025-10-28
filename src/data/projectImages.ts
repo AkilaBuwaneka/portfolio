@@ -14,6 +14,11 @@ export const projectGalleries: ProjectGallery[] = [
     projectId: '1', // Venture Vibe
     images: [
       {
+        url: new URL('../assets/ventureVibe/logo.png', import.meta.url).href,
+        title: 'Logo',
+        description: 'Venture Vibe brand logo'
+      },
+      {
         url: new URL('../assets/ventureVibe/homepage_01.PNG', import.meta.url).href,
         title: 'Homepage',
         description: 'Main landing page with trip planning features'
@@ -43,6 +48,11 @@ export const projectGalleries: ProjectGallery[] = [
   {
     projectId: '2', // Computify
     images: [
+      {
+        url: new URL('../assets/computify/logo.png', import.meta.url).href,
+        title: 'Logo',
+        description: 'Computify brand logo'
+      },
       {
         url: new URL('../assets/computify/products_page.jpg', import.meta.url).href,
         title: 'Products Catalog',
@@ -114,14 +124,30 @@ export const projectGalleries: ProjectGallery[] = [
     projectId: '5', // ShowSync
     images: [
       {
-        url: new URL('../assets/showSync/homePage.png', import.meta.url).href,
-        title: 'Dashboard',
-        description: 'Event management dashboard'
+        url: new URL('../assets/showSync/logo.svg', import.meta.url).href,
+        title: 'Logo',
+        description: 'ShowSync brand logo'
       },
       {
         url: new URL('../assets/showSync/homepageWithNavbar.jpg', import.meta.url).href,
         title: 'Navigation',
         description: 'Full interface with navigation'
+      },
+      
+      {
+        url: new URL('../assets/showSync/homePage_02.png', import.meta.url).href,
+        title: 'Dashboard View 2',
+        description: 'Alternative dashboard layout'
+      },
+      {
+        url: new URL('../assets/showSync/homePage_03.png', import.meta.url).href,
+        title: 'Dashboard View 3',
+        description: 'Additional dashboard features'
+      },
+      {
+        url: new URL('../assets/showSync/artistsPage.png', import.meta.url).href,
+        title: 'Artists Page',
+        description: 'Browse and manage artists'
       }
     ]
   },

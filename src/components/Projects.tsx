@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const categories = ['all', 'web', 'mobile', 'ai', 'design'];
+  const categories = ['all', 'web', /*'mobile',*/ 'ai', 'design'];
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
@@ -198,7 +198,7 @@ const Projects: React.FC = () => {
             Want to see more of my work?
           </p>
           <motion.a
-            href="https://github.com"
+            href="https://github.com/AkilaBuwaneka"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"

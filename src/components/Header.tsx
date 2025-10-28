@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Moon, Sun, Code2 } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../hooks/useCustomHooks';
 import { personalInfo } from '../data/mockData';
+import leetcodeIcon from '../assets/icons/leetcode.png';
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -124,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
                   whileTap={{ scale: 0.9 }}
                   aria-label="LeetCode Profile"
                 >
-                  <Code2 size={20} />
+                  <img src={leetcodeIcon} alt="LeetCode" className="w-5 h-5 dark:brightness-0 dark:invert" />
                 </motion.a>
                 <motion.a
                   href={`mailto:${personalInfo.email}`}
@@ -182,7 +183,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, scrollProgre
                 <Linkedin size={20} />
               </a>
               <a href={personalInfo.social.leetcode} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="LeetCode">
-                <Code2 size={20} />
+                <img src={leetcodeIcon} alt="LeetCode" className="w-5 h-5 dark:brightness-0 dark:invert" />
               </a>
               <a href={`mailto:${personalInfo.email}`} className="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-full p-2 transition-all" aria-label="Email">
                 <Mail size={20} />

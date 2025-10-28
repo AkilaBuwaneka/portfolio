@@ -8,7 +8,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  category: 'web' | 'mobile' | 'ai' | 'design';
+  category: 'web' | /*'mobile' | */'ai' | 'design';
   year: number;
   challenge: string;
   solution: string;
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     longDescription: 'A comprehensive web platform designed for travelers to plan trips collaboratively with friends, discover destinations, manage budgets, and connect with travel guides. Features include trip planning tools, blog sharing, event discovery, and a multi-role system for admins, event planners, and certified travel guides.',
     technologies: ['React', 'Spring Boot', 'PostgreSQL', 'AWS Cognito', 'AWS S3', 'AWS Lambda', 'GCP', 'GitHub', 'Postman'],
     imageUrl: new URL('../assets/ventureVibe/homepage_01.PNG', import.meta.url).href,
-    githubUrl: 'https://github.com/AkilaBuwaneka',
+    githubUrl: 'https://github.com/VentureVibe',
     featured: true,
     category: 'web',
     year: 2024,
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     longDescription: 'An innovative e-commerce platform specializing in computer accessories and components. Features a unique PC building tool that helps users select compatible components, an intuitive shopping experience, and a comprehensive admin panel for inventory management.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
     imageUrl: new URL('../assets/computify/products_page.jpg', import.meta.url).href,
-    githubUrl: 'https://github.com/AkilaBuwaneka',
+    githubUrl: 'https://github.com/sachin541/Group-Project-SCS2202',
     featured: true,
     category: 'web',
     year: 2023,
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     longDescription: 'A scalable online food ordering platform built with cutting-edge microservices architecture and micro-frontend approach. Utilizes Single SPA for seamless module integration and BFF (Backend for Frontend) pattern for optimized API communication.',
     technologies: ['React', 'Single SPA', 'Spring Boot', 'Node.js', 'MongoDB', 'Microservices', 'Micro-Frontend'],
     imageUrl: new URL('../assets/freshland/freshland.PNG', import.meta.url).href,
-    githubUrl: 'https://github.com/AkilaBuwaneka',
+    githubUrl: 'https://github.com/AkilaBuwaneka/freshland-food_store',
     featured: true,
     category: 'web',
     year: 2024,
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     longDescription: 'An intelligent pathfinding application that allows users to upload floor plan images, mark obstacles, and generate optimal routes between multiple points. Perfect for warehouse management, indoor navigation, and logistics optimization.',
     technologies: ['FastAPI', 'Python', 'MongoDB', 'Computer Vision', 'Pathfinding Algorithms'],
     imageUrl: new URL('../assets/findOptimalPath/homepage.png', import.meta.url).href,
-    githubUrl: 'https://github.com/AkilaBuwaneka',
+    githubUrl: 'https://github.com/AkilaBuwaneka/optimal-path-finder',
     featured: true,
     category: 'ai',
     year: 2024,
@@ -111,10 +111,10 @@ export const projects: Project[] = [
     longDescription: 'A modern platform for organizing events and managing budgets efficiently. Currently features a sleek Next.js frontend with plans for a robust backend using Node.js and Express with PostgreSQL for data persistence and real-time updates.',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Prisma'],
     imageUrl: new URL('../assets/showSync/homePage.png', import.meta.url).href,
-    githubUrl: 'https://github.com/AkilaBuwaneka',
+    githubUrl: 'https://github.com/AkilaBuwaneka/show-sync',
     featured: false,
     category: 'web',
-    year: 2024,
+    year: 2025,
     challenge: 'Event organizers need a centralized platform to manage complex events and track budgets in real-time',
     solution: 'Creating an intuitive platform with budget tracking, vendor management, and collaborative planning features',
     result: 'Streamlined event planning workflow with comprehensive budget oversight and team collaboration tools'
@@ -143,7 +143,7 @@ export const experiences: Experience[] = [
     position: 'Software Engineer Intern',
     duration: '2024 Nov - Present',
     description: 'Develop responsive web applications using modern frameworks',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Flutter', 'Go', 'Terraform', 'AWS', 'GCP'],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Flutter', 'Go', 'Terraform', 'AWS', 'GCP', 'Quarkus'],
     achievements: [
       'Improved website performance with integrating CloudWatch RUM',
       'Built features and components across multiple projects',
@@ -158,7 +158,7 @@ export const certifications: Certification[] = [
     title: 'Introduction to Artificial Intelligence 2023',
     issuer: 'Great Learning',
     date: '2023',
-    credentialUrl: 'https://verify-link.com',
+    credentialUrl: '',
     type: 'certification',
     imageUrl: new URL('../assets/certificationsAndBadges/CertificateOfCompletion_Introduction to Artificial Intelligence 2023_page-0001.jpg', import.meta.url).href
   },
@@ -167,7 +167,7 @@ export const certifications: Certification[] = [
     title: 'Level 3 Certificate of Completion - External Project Summit 2024',
     issuer: 'Project Summit',
     date: '2024',
-    credentialUrl: 'https://verify-link.com',
+    credentialUrl: '',
     type: 'certification',
     imageUrl: new URL('../assets/certificationsAndBadges/Level 3 Certificate of Completion - External Project Summit 2024 - Akila Buwaneka_page-0001.jpg', import.meta.url).href
   },
@@ -176,7 +176,7 @@ export const certifications: Certification[] = [
     title: 'Digital Badge - ProjectSummit Basecamp03',
     issuer: 'Project Summit',
     date: '2024',
-    credentialUrl: 'https://badge-link.com',
+    credentialUrl: '',
     type: 'badge',
     imageUrl: new URL('../assets/certificationsAndBadges/Digital Badge - ProjectSummit_Basecamp03.png', import.meta.url).href
   }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Github, Linkedin, Mail, Heart, Code2 } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { personalInfo } from '../data/mockData';
+import leetcodeIcon from '../assets/icons/leetcode.png';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -15,6 +16,7 @@ const Footer: React.FC = () => {
         { label: 'Home', href: '#home' },
         { label: 'About', href: '#about' },
         { label: 'Projects', href: '#projects' },
+        { label: 'Certifications', href: '#certifications' },
         { label: 'Contact', href: '#contact' }
       ]
     },
@@ -86,7 +88,7 @@ const Footer: React.FC = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Code2 size={20} />
+                  <img src={leetcodeIcon} alt="LeetCode" className="w-5 h-5 brightness-0 invert" />
                 </motion.a>
                 <motion.a
                   href={`mailto:${personalInfo.email}`}

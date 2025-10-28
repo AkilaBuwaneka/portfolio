@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, Download, Code2 } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { useMousePosition } from '../hooks/useCustomHooks';
 import { personalInfo } from '../data/mockData';
 import { handleResume } from '../utils/resumeUtils';
+import leetcodeIcon from '../assets/icons/leetcode.png';
 
 const Hero: React.FC = () => {
   const mousePosition = useMousePosition();
@@ -179,11 +180,11 @@ const Hero: React.FC = () => {
             className="flex justify-center space-x-6 pt-8"
           >
             {[
-              { icon: Github, href: personalInfo.social.github, color: 'hover:text-gray-800 dark:hover:text-gray-200', label: 'GitHub' },
-              { icon: Linkedin, href: personalInfo.social.linkedin, color: 'hover:text-blue-600', label: 'LinkedIn' },
-              { icon: Code2, href: personalInfo.social.leetcode, color: 'hover:text-orange-500', label: 'LeetCode' },
-              { icon: Mail, href: `mailto:${personalInfo.email}`, color: 'hover:text-red-500', label: 'Email' }
-            ].map(({ icon: Icon, href, color, label }, index) => (
+              { icon: Github, href: personalInfo.social.github, color: 'hover:text-gray-800 dark:hover:text-gray-200', label: 'GitHub', isImage: false },
+              { icon: Linkedin, href: personalInfo.social.linkedin, color: 'hover:text-blue-600', label: 'LinkedIn', isImage: false },
+              { icon: null, iconSrc: leetcodeIcon, href: personalInfo.social.leetcode, color: 'hover:text-orange-500', label: 'LeetCode', isImage: true },
+              { icon: Mail, href: `mailto:${personalInfo.email}`, color: 'hover:text-red-500', label: 'Email', isImage: false }
+            ].map(({ icon: Icon, iconSrc, href, color, label, isImage }, index) => (
               <motion.a
                 key={index}
                 href={href}
@@ -197,7 +198,11 @@ const Hero: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6 + index * 0.1 }}
               >
-                <Icon size={24} />
+                {isImage ? (
+                  <img src={iconSrc} alt={label} className="w-6 h-6 brightness-0 dark:invert" />
+                ) : (
+                  Icon && <Icon size={24} />
+                )}
               </motion.a>
             ))}
           </motion.div>

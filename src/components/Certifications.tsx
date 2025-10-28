@@ -117,16 +117,8 @@ const Certifications: React.FC = () => {
                   <span>{cert.date}</span>
                 </div>
 
-                {/* Credential ID */}
-                {cert.credentialId && (
-                  <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Credential ID</p>
-                    <p className="text-xs font-mono text-gray-700 dark:text-gray-300 truncate">{cert.credentialId}</p>
-                  </div>
-                )}
-
                 {/* Verify Button */}
-                {cert.credentialUrl && (
+                {/*cert.credentialUrl && (
                   <motion.a
                     href={cert.credentialUrl}
                     target="_blank"
@@ -137,7 +129,7 @@ const Certifications: React.FC = () => {
                     <ExternalLink size={14} />
                     <span>Verify Credential</span>
                   </motion.a>
-                )}
+                )*/}
               </div>
 
               {/* Glow Effect */}
