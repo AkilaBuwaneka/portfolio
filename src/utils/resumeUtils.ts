@@ -1,9 +1,3 @@
-// Resume Download Utility
-
-/**
- * Downloads the resume file
- * @param resumeUrl - The URL of the resume file (can be local path or external URL)
- */
 export const downloadResume = (resumeUrl: string = '/resume.pdf'): void => {
   // Create an anchor element
   const link = document.createElement('a');
@@ -19,18 +13,10 @@ export const downloadResume = (resumeUrl: string = '/resume.pdf'): void => {
   document.body.removeChild(link);
 };
 
-/**
- * Opens resume in a new tab
- * @param resumeUrl - The URL of the resume file
- */
 export const viewResume = (resumeUrl: string = '/resume.pdf'): void => {
   window.open(resumeUrl, '_blank');
 };
 
-/**
- * Smart resume handler - downloads if local file, opens in new tab if external URL
- * @param resumeUrl - The URL of the resume file
- */
 export const handleResume = (resumeUrl: string = '/resume.pdf'): void => {
   // Check if it's an external URL (Google Drive, Dropbox, etc.)
   if (resumeUrl.startsWith('http://') || resumeUrl.startsWith('https://')) {
@@ -47,11 +33,6 @@ export const handleResume = (resumeUrl: string = '/resume.pdf'): void => {
   }
 };
 
-/**
- * Check if resume file exists
- * @param resumeUrl - The URL of the resume file
- * @returns Promise<boolean> - true if file exists
- */
 export const checkResumeExists = async (resumeUrl: string = '/resume.pdf'): Promise<boolean> => {
   try {
     const response = await fetch(resumeUrl, { method: 'HEAD' });

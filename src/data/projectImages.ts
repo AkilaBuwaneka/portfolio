@@ -1,5 +1,3 @@
-// Project Image Gallery - Multiple images for each project
-
 export interface ProjectGallery {
   projectId: string;
   images: {
