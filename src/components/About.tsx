@@ -83,6 +83,13 @@ const About: React.FC = () => {
                   </div>
                   <span>📍 {personalInfo.location}</span>
                 </div>
+                {/* Education */}
+                {personalInfo.education && (
+                  <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                    <div className="font-semibold text-gray-900 dark:text-white">{personalInfo.education.degree}</div>
+                    <div className="text-gray-600 dark:text-gray-400">{personalInfo.education.institution} • {personalInfo.education.classification} • GPA {personalInfo.education.gpa}</div>
+                  </div>
+                )}
               </div>
             </div>
 

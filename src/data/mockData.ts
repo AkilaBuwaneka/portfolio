@@ -196,5 +196,11 @@ export const personalInfo = {
   },
   bio: 'Passionate full-stack developer specializing in building scalable web applications with modern technologies. Experienced in architecting microservices platforms, developing AI-powered solutions, and creating collaborative travel and e-commerce systems. Proficient in React, Spring Boot, Node.js, and cloud technologies (AWS, GCP). Strong focus on creating user-centric solutions with clean, maintainable code and innovative problem-solving approaches.',
   availability: 'Available for freelance projects',
-  resumeUrl: '/resume.pdf'
+  education: {
+    degree: 'BSc in Computer Science',
+    institution: 'University of Colombo School of Computing',
+    classification: '2nd Lower',
+    gpa: '≈ 3.00'
+  },
+  resumeUrl: '/Akila_Buwaneka_Fullstack_Software_Engineer.pdf'
 };
